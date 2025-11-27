@@ -1,0 +1,157 @@
+/* Стили для печати */
+@media print {
+
+    /* Скрываем ненужные элементы */
+    .header,
+    .nav,
+    .cta-button,
+    .add-btn,
+    .order-btn,
+    .submit-btn,
+    .footer {
+        display: none !important;
+    }
+
+    /* Основные настройки */
+    body {
+        font-family: 'Times New Roman', serif;
+        font-size: 12pt;
+        line-height: 1.4;
+        color: #000;
+        background: white;
+        margin: 0;
+        padding: 0;
+    }
+
+    .container {
+        width: 100%;
+        max-width: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Заголовки */
+    h1,
+    h2,
+    h3 {
+        font-family: 'Times New Roman', serif;
+        color: #000;
+        page-break-after: avoid;
+    }
+
+    h2 {
+        font-size: 16pt;
+        margin-bottom: 10pt;
+    }
+
+    /* Секции */
+    section {
+        page-break-inside: avoid;
+        margin-bottom: 20pt;
+    }
+
+    /* Формы */
+    .form-wrapper {
+        background: white;
+        box-shadow: none;
+        border: 1px solid #ccc;
+        padding: 15pt;
+        margin-bottom: 15pt;
+    }
+
+    input,
+    select,
+    textarea {
+        border: 1px solid #ccc;
+        background: white;
+    }
+
+    /* Таблица */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10pt;
+    }
+
+    th,
+    td {
+        border: 1px solid #000;
+        padding: 6pt;
+        text-align: left;
+    }
+
+    th {
+        background: #f0f0f0 !important;
+        color: #000;
+        font-weight: bold;
+    }
+
+    /* Карточки блюд */
+    .dishes-grid {
+        display: block;
+    }
+
+    .dish-card {
+        border: 1px solid #ccc;
+        margin-bottom: 10pt;
+        page-break-inside: avoid;
+        box-shadow: none;
+    }
+
+    /* Изображения */
+    img {
+        max-width: 100% !important;
+        height: auto;
+    }
+
+    /* Ссылки */
+    a {
+        color: #000;
+        text-decoration: underline;
+    }
+
+    /* Скрываем декоративные элементы */
+    .hero {
+        background: white !important;
+        color: #000;
+        padding: 20pt 0;
+    }
+
+    .hero h2 {
+        color: #000;
+    }
+
+    /* Убираем анимации */
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    /* Управление разрывами страниц */
+    h1,
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    table,
+    img {
+        page-break-inside: avoid;
+    }
+
+    /* Боковая панель */
+    .sidebar {
+        background: white;
+        border: 1px solid #ccc;
+        box-shadow: none;
+    }
+
+    /* Строим ланч секция */
+    .lunch-builder {
+        display: block;
+    }
+
+    .dishes-category {
+        page-break-inside: avoid;
+    }
+}

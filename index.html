@@ -1,13 +1,16 @@
 <!DOCTYPE html>
 <html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MosFood - Бизнес-ланчи</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="print.css" media="print">
 </head>
 
 <body>
@@ -18,10 +21,9 @@
             </div>
             <nav class="nav">
                 <ul>
-                    <li><a href="#main">Главная</a></li>
+                    <li><a href="#main" class="active">Главная</a></li>
                     <li><a href="#authorized">Аутентификация</a></li>
                     <li><a href="#menu">Меню</a></li>
-                    <li><a href="#prices">Цены</a></li>
                     <li><a href="#form">Обращение</a></li>
                     <li><a href="#about">О нас</a></li>
                     <li><a href="#contacts">Контакты</a></li>
@@ -29,15 +31,16 @@
             </nav>
         </div>
     </header>
+
     <main>
         <section id="main" class="hero">
             <div class="container">
                 <h2>Вкусные бизнес-ланчи с доставкой в офис</h2>
                 <p>Полезно, быстро и доступно каждый будний день с 11:00 до 16:00</p>
-                <button class="cta-button">Заказать онлайн</button>
+                <a href="lunch.html" class="cta-button">Собрать ланч</a>
             </div>
         </section>
-        
+
         <!-- Форма аутентификации -->
         <section id="authorized" class="form-wrapper">
             <form action="https://httpbin.org/post" method="POST" class="auth-form">
@@ -59,12 +62,12 @@
 
                 <button type="submit" class="submit-btn">Войти</button>
             </form>
-            </section>
+        </section>
 
         <section id="menu" class="menu">
             <div class="container">
                 <h2>Наше меню на эту неделю</h2>
-                
+
                 <table>
                     <thead>
                         <tr>
@@ -103,7 +106,8 @@
                             <td>Уха по-царски</td>
                             <td>Пюре картофельное с рыбной котлетой из дорадо</td>
                             <td>Кисель ягодный</td>
-                        </tr><tr>
+                        </tr>
+                        <tr>
                             <td>Пятница</td>
                             <td>Свекольный</td>
                             <td>Щи щавельные</td>
@@ -118,8 +122,9 @@
         <section id="about" class="about">
             <div class="container">
                 <h2>Наши блюда</h2>
-                <img src="https://plus.unsplash.com/premium_photo-1673108852141-e8c3c22a4a22?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Вкусный бизнес-ланч от MosFood">
-                <p>Мы готовим из свежих продуктов каждый день. Наши повара с любовью создают вкусные и полезные блюда для вашего бизнес-ланча.</p>
+                <img src="images\photo_2025-09-17_09-55-03.jpg" alt="Вкусный бизнес-ланч от MosFood">
+                <p>Мы готовим из свежих продуктов каждый день. Наши повара с любовью создают вкусные и полезные блюда
+                    для вашего бизнес-ланча.</p>
             </div>
         </section>
 
@@ -133,72 +138,72 @@
 
         <section id="form" class="form-wrapper">
             <div class="container">
-        <!-- Форма обратной связи -->
-            <form action="https://httpbin.org/post" method="POST" class="feedback-form" enctype="multipart/form-data">
-                <h2>Форма обратной связи</h2>
-                
-                <div class="form-group">
-                    <label for="fullname">ФИО *</label>
-                    <input type="text" id="fullname" name="fullname" required>
-                </div>
+                <!-- Форма обратной связи -->
+                <form action="https://httpbin.org/post" method="POST" class="feedback-form"
+                    enctype="multipart/form-data">
+                    <h2>Форма обратной связи</h2>
 
-                <div class="form-group">
-                    <label for="email">Email *</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
+                    <div class="form-group">
+                        <label for="fullname">ФИО *</label>
+                        <input type="text" id="fullname" name="fullname" required>
+                    </div>
 
-                <div class="form-group">
-                    <span class="group-label">Откуда узнали о нас? *</span>
-                    <div class="radio-group">
-                        <div class="radio-option">
-                            <input type="radio" id="source-search" name="source" value="search" required>
-                            <label for="source-search">Поисковая система</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="source-friends" name="source" value="friends">
-                            <label for="source-friends">Рекомендация друзей</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="source-social" name="source" value="social">
-                            <label for="source-social">Социальные сети</label>
-                        </div>
-                        <div class="radio-option">
-                            <input type="radio" id="source-other" name="source" value="other">
-                            <label for="source-other">Другое</label>
+                    <div class="form-group">
+                        <label for="email">Email *</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <span class="group-label">Откуда узнали о нас? *</span>
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" id="source-search" name="source" value="search" required>
+                                <label for="source-search">Поисковая система</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="source-friends" name="source" value="friends">
+                                <label for="source-friends">Рекомендация друзей</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="source-social" name="source" value="social">
+                                <label for="source-social">Социальные сети</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" id="source-other" name="source" value="other">
+                                <label for="source-other">Другое</label>
+                            </div>
                         </div>
                     </div>
-                </div>
 
-                <div class="form-group">
-                    <label for="request-type">Тип обращения *</label>
-                    <select id="request-type" name="request_type" required>
-                        <option value="">Выберите тип обращения</option>
-                        <option value="complaint">Жалоба</option>
-                        <option value="suggestion">Предложение</option>
-                    </select>
-                </div>
+                    <div class="form-group">
+                        <label for="request-type">Тип обращения *</label>
+                        <select id="request-type" name="request_type" required>
+                            <option value="">Выберите тип обращения</option>
+                            <option value="complaint">Жалоба</option>
+                            <option value="suggestion">Предложение</option>
+                        </select>
+                    </div>
 
-                <div class="form-group">
-                    <label for="message">Текст сообщения *</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
+                    <div class="form-group">
+                        <label for="message">Текст сообщения *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
 
-                <div class="form-group">
-                    <label for="attachment">Вложение</label>
-                    <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.jpg,.png">
-                    <small>Поддерживаемые форматы: PDF, DOC, JPG, PNG (макс. 5MB)</small>
-                </div>
+                    <div class="form-group">
+                        <label for="attachment">Вложение</label>
+                        <input type="file" id="attachment" name="attachment" accept=".pdf,.doc,.docx,.jpg,.png">
+                        <small>Поддерживаемые форматы: PDF, DOC, JPG, PNG (макс. 5MB)</small>
+                    </div>
 
-                <div class="form-group checkbox-group">
-                    <input type="checkbox" id="consent" name="consent" required>
-                    <label for="consent">Даю согласие на обработку персональных данных *</label>
-                </div>
+                    <div class="form-group checkbox-group">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">Даю согласие на обработку персональных данных *</label>
+                    </div>
 
-                <button type="submit" class="submit-btn">Отправить обращение</button>
-            </form>
-        </div>
+                    <button type="submit" class="submit-btn">Отправить обращение</button>
+                </form>
+            </div>
         </section>
-
     </main>
 
     <footer id="contacts" class="footer">
@@ -221,5 +226,70 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // JavaScript для функциональности "Собрать ланч"
+        document.addEventListener('DOMContentLoaded', function () {
+            const addButtons = document.querySelectorAll('.add-btn');
+            const orderSummary = document.querySelector('.order-summary');
+            const totalPriceElement = document.querySelector('.total-price strong');
+
+            let selectedDishes = {
+                salad: { name: 'Не выбран', price: 0 },
+                soup: { name: 'Не выбран', price: 0 },
+                main: { name: 'Не выбрано', price: 0 },
+                drink: { name: 'Не выбран', price: 0 }
+            };
+
+            function updateOrderSummary() {
+                document.getElementById('selected-salad').textContent = selectedDishes.salad.name;
+                document.getElementById('selected-soup').textContent = selectedDishes.soup.name;
+                document.getElementById('selected-main').textContent = selectedDishes.main.name;
+                document.getElementById('selected-drink').textContent = selectedDishes.drink.name;
+
+                const totalPrice = selectedDishes.salad.price + selectedDishes.soup.price +
+                    selectedDishes.main.price + selectedDishes.drink.price;
+                totalPriceElement.textContent = totalPrice + ' ₽';
+            }
+
+            addButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const dishCard = this.closest('.dish-card');
+                    const category = dishCard.dataset.category;
+                    const dishName = dishCard.querySelector('h4').textContent;
+                    const dishPrice = parseInt(dishCard.dataset.price);
+
+                    selectedDishes[category] = {
+                        name: dishName,
+                        price: dishPrice
+                    };
+
+                    updateOrderSummary();
+
+                    // Визуальная обратная связь
+                    this.textContent = 'Добавлено!';
+                    this.style.backgroundColor = '#27ae60';
+                    setTimeout(() => {
+                        this.textContent = 'Добавить';
+                        this.style.backgroundColor = '';
+                    }, 1500);
+                });
+            });
+
+            // Кнопка заказа
+            document.querySelector('.order-btn').addEventListener('click', function () {
+                const totalPrice = selectedDishes.salad.price + selectedDishes.soup.price +
+                    selectedDishes.main.price + selectedDishes.drink.price;
+
+                if (totalPrice === 0) {
+                    alert('Пожалуйста, выберите хотя бы одно блюдо');
+                    return;
+                }
+
+                alert(`Спасибо за заказ!\nВаш ланч:\n- Салат: ${selectedDishes.salad.name}\n- Суп: ${selectedDishes.soup.name}\n- Основное блюдо: ${selectedDishes.main.name}\n- Напиток: ${selectedDishes.drink.name}\n\nИтого: ${totalPrice} ₽`);
+            });
+        });
+    </script>
 </body>
+
 </html>

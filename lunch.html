@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MosFood - Собрать ланч</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Шапка сайта (header) -->
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>MosFood</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#menu">Меню</a></li>
+                    <li><a href="lunch.html" class="active">Собрать ланч</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Блок с основным содержимым страницы (main) -->
+    <main>
+        <section class="build-lunch-page">
+            <div class="container">
+                <h2>Собрать свой бизнес-ланч</h2>
+
+                <div class="lunch-builder">
+                    <aside class="sidebar">
+                        <h3>Ваша корзина</h3>
+                        <div class="order-summary">
+                            <div class="cart-items">
+                                <p>Салат: <span id="salad-preview">Не выбран</span></p>
+                                <p>Суп: <span id="soup-preview">Не выбран</span></p>
+                                <p>Основное блюдо: <span id="main-preview">Не выбрано</span></p>
+                                <p>Напиток: <span id="drink-preview">Не выбран</span></p>
+                            </div>
+                            <div class="total-section">
+                                <p class="total-price">Итого: <strong id="total-preview">0 ₽</strong></p>
+                            </div>
+                        </div>
+
+                        <!-- Форма для отправки заказа -->
+                        <form action="https://httpbin.org/post" method="POST" class="order-form">
+                            <input type="hidden" name="restaurant" value="MosFood">
+                            <input type="hidden" name="order_type" value="business_lunch">
+                            <input type="hidden" name="currency" value="RUB">
+
+                            <!-- Скрытые поля для выбранных блюд -->
+                            <input type="hidden" name="selected_salad" id="selected-salad" value="">
+                            <input type="hidden" name="selected_soup" id="selected-soup" value="">
+                            <input type="hidden" name="selected_main" id="selected-main" value="">
+                            <input type="hidden" name="selected_drink" id="selected-drink" value="">
+                            <input type="hidden" name="total_price" id="total-price" value="0">
+
+                            <button type="submit" class="order-btn" disabled>Отправить заказ</button>
+                            <p class="form-note"><small>Выберите блюда из всех категорий для активации кнопки</small>
+                            </p>
+                        </form>
+                    </aside>
+
+                    <div class="dishes-section">
+                        <!-- Блок с салатами (section) -->
+                        <section class="dishes-category">
+                            <h2>Салаты</h2>
+                            <!-- Блок с блюдами (div) -->
+                            <div class="dishes-grid">
+                                <!-- Блок каждого блюда (div) -->
+                                <div class="dish-card">
+                                    <!-- Изображение (img) -->
+                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop"
+                                        alt="Греческий салат">
+                                    <!-- Текст с названием (p) -->
+                                    <p class="dish-name">Греческий салат</p>
+                                    <!-- Текст с весом/объемом (p) -->
+                                    <p class="dish-weight">250 г</p>
+                                    <!-- Текст с ценой (p) -->
+                                    <p class="dish-price">120 ₽</p>
+                                    <!-- Кнопка «Добавить» (button) -->
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Греческий салат:120', 'Греческий салат', 120, 250)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop"
+                                        alt="Салат Цезарь">
+                                    <p class="dish-name">Салат Цезарь</p>
+                                    <p class="dish-weight">300 г</p>
+                                    <p class="dish-price">150 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Цезарь:150', 'Салат Цезарь', 150, 300)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
+                                        alt="Овощной салат">
+                                    <p class="dish-name">Овощной салат</p>
+                                    <p class="dish-weight">200 г</p>
+                                    <p class="dish-price">100 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Овощной:100', 'Овощной салат', 100, 200)">Добавить</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Блок с супами (section) -->
+                        <section class="dishes-category">
+                            <h2>Супы</h2>
+                            <div class="dishes-grid">
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop"
+                                        alt="Борщ">
+                                    <p class="dish-name">Борщ</p>
+                                    <p class="dish-weight">350 мл</p>
+                                    <p class="dish-price">180 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Борщ:180', 'Борщ', 180, 350)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&h=300&fit=crop"
+                                        alt="Грибной суп-пюре">
+                                    <p class="dish-name">Грибной суп-пюре</p>
+                                    <p class="dish-weight">300 мл</p>
+                                    <p class="dish-price">160 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Грибной суп-пюре:160', 'Грибной суп-пюре', 160, 300)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1563379091339-03246963d96f?w=400&h=300&fit=crop"
+                                        alt="Рассольник">
+                                    <p class="dish-name">Рассольник</p>
+                                    <p class="dish-weight">350 мл</p>
+                                    <p class="dish-price">170 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Рассольник:170', 'Рассольник', 170, 350)">Добавить</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Блок с главными блюдами (section) -->
+                        <section class="dishes-category">
+                            <h2>Основные блюда</h2>
+                            <div class="dishes-grid">
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&h=300&fit=crop"
+                                        alt="Курица с картофелем">
+                                    <p class="dish-name">Курица с картофелем</p>
+                                    <p class="dish-weight">400 г</p>
+                                    <p class="dish-price">250 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('main', 'Курица с картофелем:250', 'Курица с картофелем', 250, 400)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop"
+                                        alt="Паста Карбонара">
+                                    <p class="dish-name">Паста Карбонара</p>
+                                    <p class="dish-weight">350 г</p>
+                                    <p class="dish-price">280 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('main', 'Паста Карбонара:280', 'Паста Карбонара', 280, 350)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1555072956-7758afc20a82?w=400&h=300&fit=crop"
+                                        alt="Тефтели с рисом">
+                                    <p class="dish-name">Тефтели с рисом</p>
+                                    <p class="dish-weight">380 г</p>
+                                    <p class="dish-price">220 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('main', 'Тефтели с рисом:220', 'Тефтели с рисом', 220, 380)">Добавить</button>
+                                </div>
+                            </div>
+                        </section>
+
+                        <!-- Блок с напитками (section) -->
+                        <section class="dishes-category">
+                            <h2>Напитки</h2>
+                            <div class="dishes-grid">
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
+                                        alt="Морс ягодный">
+                                    <p class="dish-name">Морс ягодный</p>
+                                    <p class="dish-weight">500 мл</p>
+                                    <p class="dish-price">80 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('drink', 'Морс ягодный:80', 'Морс ягодный', 80, 500)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"
+                                        alt="Компот">
+                                    <p class="dish-name">Компот из сухофруктов</p>
+                                    <p class="dish-weight">500 мл</p>
+                                    <p class="dish-price">60 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('drink', 'Компот:60', 'Компот из сухофруктов', 60, 500)">Добавить</button>
+                                </div>
+
+                                <div class="dish-card">
+                                    <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"
+                                        alt="Сок">
+                                    <p class="dish-name">Сок апельсиновый</p>
+                                    <p class="dish-weight">330 мл</p>
+                                    <p class="dish-price">70 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('drink', 'Сок:70', 'Сок апельсиновый', 70, 330)">Добавить</button>
+                                </div>
+                            </div>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Форма оформления заказа -->
+    <section class="order-form-section">
+        <div class="container">
+            <h2>Оформление заказа</h2>
+            <form action="https://httpbin.org/post" method="POST" class="order-details-form">
+                <div class="form-columns">
+                    <div class="form-column">
+                        <h3>Ваши данные</h3>
+
+                        <div class="form-group">
+                            <label for="customer-name">ФИО *</label>
+                            <input type="text" id="customer-name" name="customer_name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer-email">Email *</label>
+                            <input type="email" id="customer-email" name="customer_email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="customer-phone">Телефон *</label>
+                            <input type="tel" id="customer-phone" name="customer_phone" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery-address">Адрес доставки *</label>
+                            <textarea id="delivery-address" name="delivery_address" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="delivery-time">Время доставки</label>
+                            <select id="delivery-time" name="delivery_time">
+                                <option value="11:00-12:00">11:00 - 12:00</option>
+                                <option value="12:00-13:00">12:00 - 13:00</option>
+                                <option value="13:00-14:00">13:00 - 14:00</option>
+                                <option value="14:00-15:00">14:00 - 15:00</option>
+                                <option value="15:00-16:00">15:00 - 16:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="comments">Комментарий к заказу</label>
+                            <textarea id="comments" name="comments" rows="3"
+                                placeholder="Особые пожелания, диетические требования и т.д."></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-column">
+                        <h3>Ваш заказ</h3>
+                        <div class="order-review">
+                            <div class="order-item">
+                                <span class="item-name">Салат:</span>
+                                <span class="item-value" id="review-salad">Не выбран</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="item-name">Суп:</span>
+                                <span class="item-value" id="review-soup">Не выбран</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="item-name">Основное блюдо:</span>
+                                <span class="item-value" id="review-main">Не выбрано</span>
+                            </div>
+                            <div class="order-item">
+                                <span class="item-name">Напиток:</span>
+                                <span class="item-value" id="review-drink">Не выбран</span>
+                            </div>
+                            <div class="order-total">
+                                <span class="total-name">Итого:</span>
+                                <span class="total-value" id="review-total">0 ₽</span>
+                            </div>
+                        </div>
+
+                        <script>
+                            let cart = {
+                                salad: { name: '', price: 0, weight: '' },
+                                soup: { name: '', price: 0, weight: '' },
+                                main: { name: '', price: 0, weight: '' },
+                                drink: { name: '', price: 0, weight: '' }
+                            };
+
+                            function addToCart(category, value, name, price, weight) {
+                                // Обновляем данные в корзине
+                                cart[category] = { name: name, price: price, weight: weight + (category === 'drink' ? ' мл' : ' г') };
+
+                                // Обновляем отображение в корзине
+                                document.getElementById(category + '-preview').textContent = name + ' - ' + price + ' ₽';
+
+                                // Обновляем скрытые поля формы
+                                document.getElementById('selected-' + category).value = value;
+
+                                // Пересчитываем общую сумму
+                                const total = cart.salad.price + cart.soup.price + cart.main.price + cart.drink.price;
+                                document.getElementById('total-preview').textContent = total + ' ₽';
+                                document.getElementById('total-price').value = total;
+
+                                // Проверяем, все ли категории выбраны
+                                const allSelected = cart.salad.name && cart.soup.name && cart.main.name && cart.drink.name;
+                                document.querySelector('.order-btn').disabled = !allSelected;
+
+                                // Обновляем текст подсказки
+                                const note = document.querySelector('.form-note');
+                                if (allSelected) {
+                                    note.innerHTML = '<small>✓ Все блюда выбраны! Можете отправить заказ</small>';
+                                    note.style.color = '#27ae60';
+                                } else {
+                                    note.innerHTML = '<small>Выберите блюда из всех категорий для активации кнопки</small>';
+                                    note.style.color = '#7f8c8d';
+                                }
+
+                                // Визуальная обратная связь для кнопки
+                                event.target.textContent = 'Добавлено!';
+                                event.target.style.backgroundColor = '#27ae60';
+                                setTimeout(() => {
+                                    event.target.textContent = 'Добавить';
+                                    event.target.style.backgroundColor = '';
+                                }, 1500);
+                            }
+                        </script>
+                        <div class="payment-method">
+                            <h4>Способ оплаты</h4>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" id="cash" name="payment_method" value="cash" checked>
+                                    <label for="cash">Наличными курьеру</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="card" name="payment_method" value="card">
+                                    <label for="card">Картой онлайн</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" id="card-courier" name="payment_method" value="card_courier">
+                                    <label for="card-courier">Картой курьеру</label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="agreement" name="agreement" required>
+                            <label for="agreement">Я согласен на обработку персональных данных и с условиями доставки
+                                *</label>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Подтвердить заказ</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- Футер с контактными данными (footer) -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>MosFood</h3>
+                    <p>Пн-Пт: с 9:00 до 18:00</p>
+                    <p>Сб-Вс: выходной</p>
+                </div>
+                <div class="footer-contacts">
+                    <h3>Контакты</h3>
+                    <p>📞 +7 (495) 000-00-07</p>
+                    <p>✉️ net@mosfood.ru</p>
+                    <p>📍 Москва, ул. Сизам, д. 110</p>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2023 MosFood. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
