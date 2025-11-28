@@ -70,42 +70,82 @@
                             </p>
                         </form>
                     </aside>
+                    <!-- Панель фильтров -->
+                    <section class="filters-section">
+                        <div class="container">
+                            <h3>🔍 Фильтры блюд</h3>
 
+                            <!-- Фильтр по категориям -->
+                            <div class="filter-group">
+                                <strong>Категория:</strong>
+                                <button class="filter-btn active" onclick="filterDishes('all')">Все</button>
+                                <button class="filter-btn" onclick="filterDishes('salad')">Салаты</button>
+                                <button class="filter-btn" onclick="filterDishes('soup')">Супы</button>
+                                <button class="filter-btn" onclick="filterDishes('main')">Основные</button>
+                                <button class="filter-btn" onclick="filterDishes('drink')">Напитки</button>
+                            </div>
+
+                            <!-- Фильтр по типу -->
+                            <div class="filter-group">
+                                <strong>Тип блюда:</strong>
+                                <button class="filter-btn" onclick="filterByTag('all')">Все</button>
+                                <button class="filter-btn" onclick="filterByTag('мясной')">Мясные</button>
+                                <button class="filter-btn" onclick="filterByTag('рыбный')">Рыбные</button>
+                                <button class="filter-btn" onclick="filterByTag('веганский')">Веганские</button>
+                                <button class="filter-btn" onclick="filterByTag('острый')">Острые</button>
+                            </div>
+
+                            <!-- Сброс фильтров -->
+                            <button class="reset-filters" onclick="resetFilters()">❌ Сбросить все фильтры</button>
+                        </div>
+                    </section>
                     <div class="dishes-section">
-                        <!-- Блок с салатами (section) -->
                         <section class="dishes-category">
                             <h2>Салаты</h2>
-                            <!-- Блок с блюдами (div) -->
                             <div class="dishes-grid">
-                                <!-- Блок каждого блюда (div) -->
-                                <div class="dish-card">
-                                    <!-- Изображение (img) -->
-                                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=400&h=300&fit=crop"
-                                        alt="Греческий салат">
-                                    <!-- Текст с названием (p) -->
+                                <div class="dish-card" data-category="salad" data-tags="веганский">
+                                    <img src="images\греческий.webp" alt="Греческий салат">
                                     <p class="dish-name">Греческий салат</p>
-                                    <!-- Текст с весом/объемом (p) -->
                                     <p class="dish-weight">250 г</p>
-                                    <!-- Текст с ценой (p) -->
                                     <p class="dish-price">120 ₽</p>
-                                    <!-- Кнопка «Добавить» (button) -->
                                     <button class="add-btn"
                                         onclick="addToCart('salad', 'Греческий салат:120', 'Греческий салат', 120, 250)">Добавить</button>
                                 </div>
-
-                                <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1546793665-c74683f339c1?w=400&h=300&fit=crop"
-                                        alt="Салат Цезарь">
+                                <div class="dish-card" data-category="salad" data-tags="мясной">
+                                    <img src="images\оливье.webp" alt="Салат оливье">
+                                    <p class="dish-name">Салат оливье</p>
+                                    <p class="dish-weight">200 г</p>
+                                    <p class="dish-price">180 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Салат оливье:180', 'Салат оливье', 180, 200)">Добавить</button>
+                                </div>
+                                <div class="dish-card" data-category="salad" data-tags="веганский">
+                                    <img src="images\свекольный.webp" alt="Салат свекольный">
+                                    <p class="dish-name">Салат свекольный</p>
+                                    <p class="dish-weight">200 г</p>
+                                    <p class="dish-price">80 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Салат свекольный:80', 'Салат из капусты', 80, 200)">Добавить</button>
+                                </div>
+                                <div class="dish-card" data-category="salad" data-tags="мясной">
+                                    <img src="images\цезарь.webp" alt="Салат Цезарь">
                                     <p class="dish-name">Салат Цезарь</p>
                                     <p class="dish-weight">300 г</p>
                                     <p class="dish-price">150 ₽</p>
                                     <button class="add-btn"
                                         onclick="addToCart('salad', 'Цезарь:150', 'Салат Цезарь', 150, 300)">Добавить</button>
                                 </div>
+                                <div class="dish-card" data-category="salad" data-tags="мясной">
+                                    <img src="images\баварский.webp" alt="Салат баварский">
+                                    <p class="dish-name">Салат баварский</p>
+                                    <p class="dish-weight">300 г</p>
+                                    <p class="dish-price">200 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('salad', 'Салат баварский:150', 'Салат баварский', 150, 300)">Добавить</button>
+                                </div>
 
-                                <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=400&h=300&fit=crop"
-                                        alt="Овощной салат">
+                                <div class="dish-card" data-category="salad" data-tags="веганский">
+                                    <img src="images\овощной.webp" alt="Овощной салат">
                                     <p class="dish-name">Овощной салат</p>
                                     <p class="dish-weight">200 г</p>
                                     <p class="dish-price">100 ₽</p>
@@ -119,9 +159,8 @@
                         <section class="dishes-category">
                             <h2>Супы</h2>
                             <div class="dishes-grid">
-                                <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1547592166-23ac45744acd?w=400&h=300&fit=crop"
-                                        alt="Борщ">
+                                <div class="dish-card" data-category="soup" data-tags="мясной">
+                                    <img src="images\борщ.webp" alt="Борщ">
                                     <p class="dish-name">Борщ</p>
                                     <p class="dish-weight">350 мл</p>
                                     <p class="dish-price">180 ₽</p>
@@ -129,19 +168,40 @@
                                         onclick="addToCart('soup', 'Борщ:180', 'Борщ', 180, 350)">Добавить</button>
                                 </div>
 
-                                <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?w=400&h=300&fit=crop"
-                                        alt="Грибной суп-пюре">
+                                <div class="dish-card" data-category="soup" data-tags="веганский">
+                                    <img src="images\грибной.webp" alt="Грибной суп-пюре">
                                     <p class="dish-name">Грибной суп-пюре</p>
                                     <p class="dish-weight">300 мл</p>
                                     <p class="dish-price">160 ₽</p>
                                     <button class="add-btn"
                                         onclick="addToCart('soup', 'Грибной суп-пюре:160', 'Грибной суп-пюре', 160, 300)">Добавить</button>
                                 </div>
-
-                                <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1563379091339-03246963d96f?w=400&h=300&fit=crop"
-                                        alt="Рассольник">
+                                <div class="dish-card" data-category="soup" data-tags="веганский">
+                                    <img src="images\щавельные.webp" alt="Щи щавельные">
+                                    <p class="dish-name">Щи щавельные</p>
+                                    <p class="dish-weight">300 мл</p>
+                                    <p class="dish-price">110 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Щи щавельные:110', 'Щи щавельные', 110, 300)">Добавить</button>
+                                </div>
+                                <div class="dish-card" data-category="soup" data-tags="рыбный">
+                                    <img src="images\финский.webp" alt="Суп Финский">
+                                    <p class="dish-name">Суп Финский</p>
+                                    <p class="dish-weight">300 мл</p>
+                                    <p class="dish-price">160 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Суп Финский:160', 'Суп Финский', 160, 300)">Добавить</button>
+                                </div>
+                                <div class="dish-card" data-category="soup" data-tags="рыбный">
+                                    <img src="images\уха.webp" alt="Уха">
+                                    <p class="dish-name">Уха</p>
+                                    <p class="dish-weight">300 мл</p>
+                                    <p class="dish-price">160 ₽</p>
+                                    <button class="add-btn"
+                                        onclick="addToCart('soup', 'Уха:160', 'Уха', 160, 300)">Добавить</button>
+                                </div>
+                                <div class="dish-card" data-category="soup" data-tags="мясной">
+                                    <img src="images\рассольник.webp" alt="Рассольник">
                                     <p class="dish-name">Рассольник</p>
                                     <p class="dish-weight">350 мл</p>
                                     <p class="dish-price">170 ₽</p>
@@ -156,8 +216,7 @@
                             <h2>Основные блюда</h2>
                             <div class="dishes-grid">
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1604503468506-a8da13d82791?w=400&h=300&fit=crop"
-                                        alt="Курица с картофелем">
+                                    <img src="images\курица с катрошкой.webp" alt="Курица с картофелем">
                                     <p class="dish-name">Курица с картофелем</p>
                                     <p class="dish-weight">400 г</p>
                                     <p class="dish-price">250 ₽</p>
@@ -166,8 +225,7 @@
                                 </div>
 
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=400&h=300&fit=crop"
-                                        alt="Паста Карбонара">
+                                    <img src="images\карбонара.webp" alt="Паста Карбонара">
                                     <p class="dish-name">Паста Карбонара</p>
                                     <p class="dish-weight">350 г</p>
                                     <p class="dish-price">280 ₽</p>
@@ -176,8 +234,7 @@
                                 </div>
 
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1555072956-7758afc20a82?w=400&h=300&fit=crop"
-                                        alt="Тефтели с рисом">
+                                    <img src="images\тефтели.webp" alt="Тефтели с рисом">
                                     <p class="dish-name">Тефтели с рисом</p>
                                     <p class="dish-weight">380 г</p>
                                     <p class="dish-price">220 ₽</p>
@@ -192,8 +249,7 @@
                             <h2>Напитки</h2>
                             <div class="dishes-grid">
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=400&h=300&fit=crop"
-                                        alt="Морс ягодный">
+                                    <img src="images\морс.webp" alt="Морс ягодный">
                                     <p class="dish-name">Морс ягодный</p>
                                     <p class="dish-weight">500 мл</p>
                                     <p class="dish-price">80 ₽</p>
@@ -202,8 +258,7 @@
                                 </div>
 
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"
-                                        alt="Компот">
+                                    <img src="images\компот.webp" alt="Компот">
                                     <p class="dish-name">Компот из сухофруктов</p>
                                     <p class="dish-weight">500 мл</p>
                                     <p class="dish-price">60 ₽</p>
@@ -212,8 +267,7 @@
                                 </div>
 
                                 <div class="dish-card">
-                                    <img src="https://images.unsplash.com/photo-1621506289937-a8e4df240d0b?w=400&h=300&fit=crop"
-                                        alt="Сок">
+                                    <img src="images\сок апельсиновый.webp" alt="Сок">
                                     <p class="dish-name">Сок апельсиновый</p>
                                     <p class="dish-weight">330 мл</p>
                                     <p class="dish-price">70 ₽</p>
@@ -300,52 +354,6 @@
                             </div>
                         </div>
 
-                        <script>
-                            let cart = {
-                                salad: { name: '', price: 0, weight: '' },
-                                soup: { name: '', price: 0, weight: '' },
-                                main: { name: '', price: 0, weight: '' },
-                                drink: { name: '', price: 0, weight: '' }
-                            };
-
-                            function addToCart(category, value, name, price, weight) {
-                                // Обновляем данные в корзине
-                                cart[category] = { name: name, price: price, weight: weight + (category === 'drink' ? ' мл' : ' г') };
-
-                                // Обновляем отображение в корзине
-                                document.getElementById(category + '-preview').textContent = name + ' - ' + price + ' ₽';
-
-                                // Обновляем скрытые поля формы
-                                document.getElementById('selected-' + category).value = value;
-
-                                // Пересчитываем общую сумму
-                                const total = cart.salad.price + cart.soup.price + cart.main.price + cart.drink.price;
-                                document.getElementById('total-preview').textContent = total + ' ₽';
-                                document.getElementById('total-price').value = total;
-
-                                // Проверяем, все ли категории выбраны
-                                const allSelected = cart.salad.name && cart.soup.name && cart.main.name && cart.drink.name;
-                                document.querySelector('.order-btn').disabled = !allSelected;
-
-                                // Обновляем текст подсказки
-                                const note = document.querySelector('.form-note');
-                                if (allSelected) {
-                                    note.innerHTML = '<small>✓ Все блюда выбраны! Можете отправить заказ</small>';
-                                    note.style.color = '#27ae60';
-                                } else {
-                                    note.innerHTML = '<small>Выберите блюда из всех категорий для активации кнопки</small>';
-                                    note.style.color = '#7f8c8d';
-                                }
-
-                                // Визуальная обратная связь для кнопки
-                                event.target.textContent = 'Добавлено!';
-                                event.target.style.backgroundColor = '#27ae60';
-                                setTimeout(() => {
-                                    event.target.textContent = 'Добавить';
-                                    event.target.style.backgroundColor = '';
-                                }, 1500);
-                            }
-                        </script>
                         <div class="payment-method">
                             <h4>Способ оплаты</h4>
                             <div class="radio-group">
@@ -397,6 +405,7 @@
             </div>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
