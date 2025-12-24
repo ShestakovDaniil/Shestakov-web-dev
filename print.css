@@ -1,4 +1,5 @@
 /* Стили для печати */
+
 @media print {
 
     /* Скрываем ненужные элементы */
@@ -8,7 +9,11 @@
     .add-btn,
     .order-btn,
     .submit-btn,
-    .footer {
+    .footer,
+    .filters-section,
+    .reset-filters,
+    .filter-btn,
+    button {
         display: none !important;
     }
 
@@ -17,17 +22,17 @@
         font-family: 'Times New Roman', serif;
         font-size: 12pt;
         line-height: 1.4;
-        color: #000;
-        background: white;
-        margin: 0;
-        padding: 0;
+        color: #000 !important;
+        background: white !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     .container {
-        width: 100%;
-        max-width: none;
-        margin: 0;
-        padding: 0;
+        width: 100% !important;
+        max-width: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     /* Заголовки */
@@ -35,8 +40,13 @@
     h2,
     h3 {
         font-family: 'Times New Roman', serif;
-        color: #000;
+        color: #000 !important;
         page-break-after: avoid;
+    }
+
+    h1 {
+        font-size: 18pt;
+        margin-bottom: 10pt;
     }
 
     h2 {
@@ -44,87 +54,111 @@
         margin-bottom: 10pt;
     }
 
+    h3 {
+        font-size: 14pt;
+        margin-bottom: 8pt;
+    }
+
     /* Секции */
     section {
         page-break-inside: avoid;
-        margin-bottom: 20pt;
+        margin-bottom: 20pt !important;
+        padding: 0 !important;
     }
 
     /* Формы */
     .form-wrapper {
-        background: white;
-        box-shadow: none;
-        border: 1px solid #ccc;
-        padding: 15pt;
-        margin-bottom: 15pt;
+        background: white !important;
+        box-shadow: none !important;
+        border: 1px solid #ccc !important;
+        padding: 15pt !important;
+        margin-bottom: 15pt !important;
+        break-inside: avoid;
     }
 
     input,
     select,
     textarea {
-        border: 1px solid #ccc;
-        background: white;
+        border: 1px solid #ccc !important;
+        background: white !important;
+        color: #000 !important;
     }
 
     /* Таблица */
     table {
-        width: 100%;
-        border-collapse: collapse;
-        font-size: 10pt;
+        width: 100% !important;
+        border-collapse: collapse !important;
+        font-size: 10pt !important;
+        margin: 10pt 0 !important;
     }
 
     th,
     td {
-        border: 1px solid #000;
-        padding: 6pt;
-        text-align: left;
+        border: 1px solid #000 !important;
+        padding: 6pt !important;
+        text-align: left !important;
+        color: #000 !important;
     }
 
     th {
         background: #f0f0f0 !important;
-        color: #000;
-        font-weight: bold;
+        color: #000 !important;
+        font-weight: bold !important;
     }
 
     /* Карточки блюд */
     .dishes-grid {
-        display: block;
+        display: block !important;
     }
 
     .dish-card {
-        border: 1px solid #ccc;
-        margin-bottom: 10pt;
-        page-break-inside: avoid;
-        box-shadow: none;
+        border: 1px solid #ccc !important;
+        margin-bottom: 10pt !important;
+        page-break-inside: avoid !important;
+        box-shadow: none !important;
+        padding: 10pt !important;
+        break-inside: avoid;
+    }
+
+    .dish-image-placeholder {
+        display: none !important;
     }
 
     /* Изображения */
     img {
         max-width: 100% !important;
-        height: auto;
+        height: auto !important;
     }
 
     /* Ссылки */
     a {
-        color: #000;
-        text-decoration: underline;
+        color: #000 !important;
+        text-decoration: underline !important;
     }
 
-    /* Скрываем декоративные элементы */
+    a[href]:after {
+        content: " (" attr(href) ")";
+        font-size: 10pt;
+    }
+
+    /* Герой секция */
     .hero {
         background: white !important;
-        color: #000;
-        padding: 20pt 0;
+        color: #000 !important;
+        padding: 20pt 0 !important;
+        text-align: left !important;
     }
 
     .hero h2 {
-        color: #000;
+        color: #000 !important;
     }
 
-    /* Убираем анимации */
+    /* Убираем анимации и тени */
     * {
         animation: none !important;
         transition: none !important;
+        box-shadow: none !important;
+        text-shadow: none !important;
     }
 
     /* Управление разрывами страниц */
@@ -141,17 +175,81 @@
 
     /* Боковая панель */
     .sidebar {
-        background: white;
-        border: 1px solid #ccc;
-        box-shadow: none;
+        background: white !important;
+        border: 1px solid #ccc !important;
+        box-shadow: none !important;
+        break-inside: avoid;
     }
 
-    /* Строим ланч секция */
+    .sidebar h3 {
+        border-bottom: 1px solid #000 !important;
+    }
+
+    /* Секция сборки ланча */
     .lunch-builder {
-        display: block;
+        display: block !important;
+    }
+
+    .content-wrapper {
+        display: block !important;
+    }
+
+    .dishes-section {
+        break-inside: avoid;
     }
 
     .dishes-category {
-        page-break-inside: avoid;
+        break-before: auto;
+        break-inside: avoid;
+    }
+
+    /* Формы заказа */
+    .order-form-section {
+        break-before: always;
+    }
+
+    .form-columns {
+        display: block !important;
+    }
+
+    .form-column {
+        margin-bottom: 20pt !important;
+    }
+
+    /* Скрытие пустых элементов */
+    .no-results-message {
+        display: none !important;
+    }
+
+    /* Стили для скрытых элементов */
+    .dish-card.hidden {
+        display: none !important;
+    }
+
+    /* Обрезка длинных URL */
+    .footer-contacts p {
+        color: #000 !important;
+    }
+
+    /* Номера страниц */
+    @page {
+        margin: 2cm;
+    }
+
+    @page :first {
+        margin-top: 3cm;
+    }
+
+    /* Улучшение читаемости */
+    p,
+    li {
+        orphans: 3;
+        widows: 3;
+    }
+
+    /* Печать фона (если нужно) */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
     }
 }

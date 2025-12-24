@@ -1,0 +1,713 @@
+/* Стили для страницы "Мои заказы" */
+
+/* Основная секция */
+.orders-section {
+    padding: 2rem 0 4rem;
+    background: #f8f9fa;
+    min-height: 70vh;
+}
+
+.orders-section h2 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Элементы управления */
+.orders-controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 300px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px 15px 12px 45px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.search-box i {
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #7f8c8d;
+}
+
+.filter-options {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.filter-options select {
+    padding: 10px 15px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    min-width: 180px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.filter-options select:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+/* Контейнер таблицы */
+.orders-table-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+}
+
+/* Таблица заказов */
+.orders-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.orders-table thead {
+    background: linear-gradient(135deg, #2c3e50, #34495e);
+    color: white;
+}
+
+.orders-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    font-size: 0.95rem;
+    white-space: nowrap;
+}
+
+.orders-table th:first-child {
+    width: 60px;
+    text-align: center;
+}
+
+.orders-table th:nth-child(4) {
+    width: 120px;
+}
+
+.orders-table th:nth-child(5) {
+    width: 180px;
+}
+
+.orders-table th:nth-child(6) {
+    width: 150px;
+}
+
+.orders-table th:last-child {
+    width: 140px;
+    text-align: center;
+}
+
+.orders-table tbody tr {
+    border-bottom: 1px solid #eee;
+    transition: all 0.3s;
+}
+
+.orders-table tbody tr:hover {
+    background-color: #f9f9f9;
+}
+
+.orders-table td {
+    padding: 1rem;
+    vertical-align: top;
+}
+
+.orders-table td:first-child {
+    text-align: center;
+    font-weight: 600;
+    color: #3498db;
+}
+
+.orders-table td:nth-child(2) {
+    white-space: nowrap;
+}
+
+.orders-table td:nth-child(3) {
+    max-width: 300px;
+    line-height: 1.5;
+}
+
+/* Бейджи статусов */
+.status-badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 120px;
+}
+
+.status-pending {
+    background: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.status-processing {
+    background: #cce5ff;
+    color: #004085;
+    border: 1px solid #b8daff;
+}
+
+.status-delivering {
+    background: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.status-delivered {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-cancelled {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* Кнопки действий */
+.actions-cell {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.action-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-size: 1rem;
+}
+
+.details-btn {
+    background: #3498db;
+    color: white;
+}
+
+.details-btn:hover {
+    background: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(52, 152, 219, 0.3);
+}
+
+.edit-btn {
+    background: #f39c12;
+    color: white;
+}
+
+.edit-btn:hover {
+    background: #e67e22;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(243, 156, 18, 0.3);
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: white;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 3px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* Итоговая статистика */
+.orders-summary {
+    display: flex;
+    justify-content: space-around;
+    padding: 1.5rem;
+    background: #f8f9fa;
+    border-top: 2px solid #e0e0e0;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.summary-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.summary-label {
+    font-size: 0.9rem;
+    color: #7f8c8d;
+}
+
+.summary-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+/* Сообщение об отсутствии заказов */
+.no-orders-message {
+    text-align: center;
+    padding: 4rem 2rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+.empty-orders-icon {
+    font-size: 4rem;
+    color: #bdc3c7;
+    margin-bottom: 1.5rem;
+}
+
+.no-orders-message h3 {
+    color: #2c3e50;
+    margin-bottom: 1rem;
+}
+
+.no-orders-message p {
+    color: #7f8c8d;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+
+/* Пагинация */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.page-btn {
+    padding: 10px 20px;
+    background: #3498db;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.page-btn:hover:not(:disabled) {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+.page-btn:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.page-number {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 5px;
+    background: #ecf0f1;
+    color: #2c3e50;
+    cursor: pointer;
+    transition: all 0.3s;
+    font-weight: 600;
+}
+
+.page-number:hover {
+    background: #d5dbdb;
+}
+
+.page-number.active {
+    background: #3498db;
+    color: white;
+}
+
+/* Модальные окна */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    padding: 1rem;
+}
+
+.modal.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.modal-content {
+    background: white;
+    border-radius: 15px;
+    width: 90%;
+    max-width: 800px;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.modal.active .modal-content {
+    transform: translateY(0);
+}
+
+.small-modal {
+    max-width: 500px;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    border-bottom: 2px solid #3498db;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 1.3rem;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #7f8c8d;
+    padding: 5px;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+}
+
+.close-modal:hover {
+    background: #f8f9fa;
+    color: #e74c3c;
+}
+
+.modal-body {
+    padding: 1.5rem;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    padding: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s;
+}
+
+.modal-btn.primary {
+    background: #3498db;
+    color: white;
+}
+
+.modal-btn.primary:hover {
+    background: #2980b9;
+    transform: translateY(-1px);
+}
+
+.modal-btn.secondary {
+    background: #95a5a6;
+    color: white;
+}
+
+.modal-btn.secondary:hover {
+    background: #7f8c8d;
+    transform: translateY(-1px);
+}
+
+.modal-btn.danger {
+    background: #e74c3c;
+    color: white;
+}
+
+.modal-btn.danger:hover {
+    background: #c0392b;
+    transform: translateY(-1px);
+}
+
+/* Детали заказа в модальном окне */
+.order-details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.detail-group {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.detail-group.full-width {
+    grid-column: 1 / -1;
+}
+
+.detail-group h4 {
+    margin-bottom: 1rem;
+    color: #2c3e50;
+    font-size: 1.1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #ddd;
+}
+
+.detail-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid #eee;
+}
+
+.detail-item:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.detail-label {
+    font-weight: 600;
+    color: #7f8c8d;
+    min-width: 140px;
+}
+
+.detail-value {
+    text-align: right;
+    color: #2c3e50;
+    flex: 1;
+}
+
+.order-items-list {
+    margin-bottom: 1.5rem;
+}
+
+.order-item-detail {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid #eee;
+}
+
+.order-item-detail:last-child {
+    border-bottom: none;
+}
+
+.order-total-details {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+}
+
+.total-item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.8rem;
+}
+
+.total-item:last-child {
+    margin-bottom: 0;
+}
+
+.total-item.grand-total {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #2c3e50;
+    padding-top: 1rem;
+    border-top: 2px solid #2c3e50;
+    margin-top: 1rem;
+}
+
+.order-comment {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #e0e0e0;
+    font-style: italic;
+    color: #7f8c8d;
+    line-height: 1.5;
+}
+
+/* Предупреждение об удалении */
+.delete-warning-icon {
+    font-size: 3rem;
+    color: #e74c3c;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.warning-text {
+    color: #e74c3c;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+}
+
+/* Адаптивность */
+@media (max-width: 1024px) {
+    .order-details-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .orders-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .search-box {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 768px) {
+    .orders-table {
+        font-size: 0.85rem;
+    }
+    
+    .orders-table th,
+    .orders-table td {
+        padding: 0.8rem 0.5rem;
+    }
+    
+    .orders-table th:nth-child(2),
+    .orders-table td:nth-child(2) {
+        display: none;
+    }
+    
+    .orders-summary {
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .summary-item {
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .modal-content {
+        width: 95%;
+        padding: 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .orders-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .filter-options {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .filter-options select {
+        min-width: 100%;
+    }
+    
+    .actions-cell {
+        flex-direction: column;
+        align-items: center;
+        gap: 5px;
+    }
+    
+    .action-btn {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+    
+    .pagination {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}

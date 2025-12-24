@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MosFood - Мои заказы</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style-common.css">
+    <link rel="stylesheet" href="style-forms.css">
+    <link rel="stylesheet" href="style-orders.css">
+    <link rel="stylesheet" href="print.css" media="print">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="logo">
+                <h1>MosFood</h1>
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="index.html">Главная</a></li>
+                    <li><a href="index.html#menu">Меню</a></li>
+                    <li><a href="lunch.html">Собрать ланч</a></li>
+                    <li><a href="orders.html" class="active">Мои заказы</a></li>
+                    <li><a href="index.html#about">О нас</a></li>
+                    <li><a href="index.html#contacts">Контакты</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="orders-section">
+            <div class="container">
+                <h2>Мои заказы</h2>
+                <p class="section-subtitle">История ваших заказов в MosFood</p>
+
+                <!-- Фильтры и поиск -->
+                <div class="orders-controls">
+                    <div class="search-box">
+                        <input type="text" id="order-search" placeholder="Поиск по заказам...">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="filter-options">
+                        <select id="status-filter">
+                            <option value="all">Все статусы</option>
+                            <option value="pending">Ожидает подтверждения</option>
+                            <option value="processing">Готовится</option>
+                            <option value="delivering">Доставляется</option>
+                            <option value="delivered">Доставлен</option>
+                            <option value="cancelled">Отменен</option>
+                        </select>
+                        <select id="time-filter">
+                            <option value="all">За все время</option>
+                            <option value="today">Сегодня</option>
+                            <option value="week">За неделю</option>
+                            <option value="month">За месяц</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Таблица заказов -->
+                <div class="orders-table-container">
+                    <table class="orders-table">
+                        <thead>
+                            <tr>
+                                <th>№</th>
+                                <th>Дата оформления</th>
+                                <th>Состав заказа</th>
+                                <th>Стоимость</th>
+                                <th>Время доставки</th>
+                                <th>Статус</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
+                        <tbody id="orders-list">
+                            <!-- Заказы будут загружены через JavaScript -->
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="7">
+                                    <div class="orders-summary">
+                                        <div class="summary-item">
+                                            <span class="summary-label">Всего заказов:</span>
+                                            <span class="summary-value" id="total-orders">0</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Общая сумма:</span>
+                                            <span class="summary-value" id="total-amount">0 ₽</span>
+                                        </div>
+                                        <div class="summary-item">
+                                            <span class="summary-label">Средний чек:</span>
+                                            <span class="summary-value" id="average-order">0 ₽</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+
+                <!-- Сообщение о пустых заказах -->
+                <div class="no-orders-message" id="no-orders-message" style="display: none;">
+                    <div class="empty-orders-icon">
+                        <i class="fas fa-shopping-basket"></i>
+                    </div>
+                    <h3>У вас пока нет заказов</h3>
+                    <p>Сделайте ваш первый заказ и он появится здесь</p>
+                    <a href="lunch.html" class="cta-button">Собрать ланч</a>
+                </div>
+
+                <!-- Пагинация -->
+                <div class="pagination" id="pagination" style="display: none;">
+                    <button class="page-btn" id="prev-page" disabled>
+                        <i class="fas fa-chevron-left"></i> Назад
+                    </button>
+                    <div class="page-numbers" id="page-numbers">
+                        <span class="page-number active">1</span>
+                    </div>
+                    <button class="page-btn" id="next-page">
+                        Вперед <i class="fas fa-chevron-right"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Модальное окно подробностей заказа -->
+        <div class="modal" id="order-details-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Детали заказа <span id="modal-order-number"></span></h3>
+                    <button class="close-modal" id="close-details-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="order-details-grid">
+                        <div class="detail-group">
+                            <h4>Информация о заказе</h4>
+                            <div class="detail-item">
+                                <span class="detail-label">Номер заказа:</span>
+                                <span class="detail-value" id="detail-order-id"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Дата оформления:</span>
+                                <span class="detail-value" id="detail-order-date"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Статус:</span>
+                                <span class="detail-value status-badge" id="detail-order-status"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Способ оплаты:</span>
+                                <span class="detail-value" id="detail-payment-method"></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-group">
+                            <h4>Информация о доставке</h4>
+                            <div class="detail-item">
+                                <span class="detail-label">Адрес доставки:</span>
+                                <span class="detail-value" id="detail-delivery-address"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Время доставки:</span>
+                                <span class="detail-value" id="detail-delivery-time"></span>
+                            </div>
+                            <div class="detail-item">
+                                <span class="detail-label">Контакты:</span>
+                                <span class="detail-value" id="detail-contacts"></span>
+                            </div>
+                        </div>
+
+                        <div class="detail-group full-width">
+                            <h4>Состав заказа</h4>
+                            <div class="order-items-list" id="detail-order-items">
+                                <!-- Товары будут добавлены через JS -->
+                            </div>
+                            <div class="order-total-details">
+                                <div class="total-item">
+                                    <span>Стоимость блюд:</span>
+                                    <span id="detail-subtotal">0 ₽</span>
+                                </div>
+                                <div class="total-item">
+                                    <span>Доставка:</span>
+                                    <span id="detail-delivery-fee">0 ₽</span>
+                                </div>
+                                <div class="total-item grand-total">
+                                    <span>Итого к оплате:</span>
+                                    <span id="detail-total">0 ₽</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="detail-group full-width" id="detail-comments-container">
+                            <h4>Комментарий к заказу</h4>
+                            <p class="order-comment" id="detail-order-comment"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn secondary" id="print-order-btn">
+                        <i class="fas fa-print"></i> Распечатать
+                    </button>
+                    <button class="modal-btn primary" id="close-details-btn">Закрыть</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно редактирования заказа -->
+        <div class="modal" id="edit-order-modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Редактирование заказа <span id="edit-order-number"></span></h3>
+                    <button class="close-modal" id="close-edit-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="edit-order-form">
+                        <input type="hidden" id="edit-order-id">
+
+                        <div class="form-group">
+                            <label for="edit-delivery-time">Время доставки *</label>
+                            <select id="edit-delivery-time" name="delivery_time" required>
+                                <option value="asap">Как можно скорее (с 7:00 до 23:00)</option>
+                                <option value="11:00-12:00">11:00 - 12:00</option>
+                                <option value="12:00-13:00">12:00 - 13:00</option>
+                                <option value="13:00-14:00">13:00 - 14:00</option>
+                                <option value="14:00-15:00">14:00 - 15:00</option>
+                                <option value="15:00-16:00">15:00 - 16:00</option>
+                                <option value="16:00-17:00">16:00 - 17:00</option>
+                                <option value="17:00-18:00">17:00 - 18:00</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-delivery-address">Адрес доставки *</label>
+                            <textarea id="edit-delivery-address" name="delivery_address" rows="3" required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-contacts">Контактный телефон *</label>
+                            <input type="tel" id="edit-contacts" name="contacts" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-comments">Комментарий к заказу</label>
+                            <textarea id="edit-comments" name="comments" rows="3"
+                                placeholder="Особые пожелания, диетические требования и т.д."></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="edit-payment-method">Способ оплаты *</label>
+                            <select id="edit-payment-method" name="payment_method" required>
+                                <option value="cash">Наличными курьеру</option>
+                                <option value="card">Картой онлайн</option>
+                                <option value="card_courier">Картой курьеру</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group checkbox-group">
+                            <input type="checkbox" id="edit-agreement" name="agreement" required>
+                            <label for="edit-agreement">Я подтверждаю изменения в заказе *</label>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn secondary" id="cancel-edit-btn">Отмена</button>
+                    <button class="modal-btn primary" id="save-order-btn">
+                        <i class="fas fa-save"></i> Сохранить изменения
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Модальное окно подтверждения удаления -->
+        <div class="modal" id="delete-confirm-modal">
+            <div class="modal-content small-modal">
+                <div class="modal-header">
+                    <h3>Подтверждение удаления</h3>
+                    <button class="close-modal" id="close-delete-modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <div class="delete-warning-icon">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <p>Вы действительно хотите удалить заказ <strong id="delete-order-number"></strong>?</p>
+                    <p class="warning-text">Это действие нельзя отменить. Заказ будет полностью удален из истории.</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="modal-btn secondary" id="cancel-delete-btn">Отмена</button>
+                    <button class="modal-btn danger" id="confirm-delete-btn">
+                        <i class="fas fa-trash"></i> Удалить заказ
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <h3>MosFood</h3>
+                    <p>Пн-Пт: с 9:00 до 18:00</p>
+                    <p>Сб-Вс: выходной</p>
+                </div>
+                <div class="footer-contacts">
+                    <h3>Контакты</h3>
+                    <p>📞 +7 (495) 000-00-07</p>
+                    <p>✉️ net@mosfood.ru</p>
+                    <p>📍 Москва, ул. Сизам, д. 110</p>
+                </div>
+            </div>
+            <div class="footer-copyright">
+                <p>© 2023 MosFood. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script-orders.js"></script>
+</body>
+
+</html>
